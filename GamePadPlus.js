@@ -2,34 +2,47 @@ const Gamepad = require("gamepad");
 const EventEmitter = require('events');
 
 class GamePadPlus extends EventEmitter {
-  constructor() {
+  constructor(deadZone=0.2) {
     super();
-    this.deadZone = 0.2;
+    this.deadZone = deadZone;
   }
-  init(inputInterval = 16, detectInterval = 500) {
+  init() {
     Gamepad.init();
-    Gamepad.on("attach", (id, state) => onAttach(id, state));
-    Gamepad.on("remove", (id) => onRemove(id));
-    Gamepad.on("down", (id, buttonId, timestamp) => this.onDown(id, buttonId, timestamp));
-    Gamepad.on("up", (id, buttonId, timestamp) => this.onUp(id, buttonId, timestamp));
-    Gamepad.on("move", (id, axis, value, lastValue, timestamp) => this.onMove(axis, value, lastValue, timestamp));
-    setInterval(Gamepad.processEvents, inputInterval);
-    setInterval(Gamepad.detectDevices, detectInterval);
+    Gamepad.on("attach", (id, state) => _onAttach(id, state));
+    Gamepad.on("remove", (id) => _onRemove(id));
+    Gamepad.on("down", (id, buttonId, timestamp) => this._onDown(id, buttonId, timestamp));
+    Gamepad.on("up", (id, buttonId, timestamp) => this._onUp(id, buttonId, timestamp));
+    Gamepad.on("move", (id, axis, value, lastValue, timestamp) => this._onMove(axis, value, lastValue, timestamp));
   }
-  onAttach(id, state) {
+  shutdown() {
+    Gamepad.shutdown();
+  }
+  numDevices() {
+    return(Gamepad.numDevices());
+  }
+  deviceAtIndex(deviceIndex) {
+    return(Gamepad.deviceAtIndex(deviceIndex));
+  }
+  detectDevices() {
+    Gamepad.detectDevices();
+  }
+  processEvents() {
+    Gamepad.processEvents();
+  }
+  _onAttach(id, state) {
     this.emit("attach", id, state);
   }
-  onRemove(id) {
+  _onRemove(id) {
     this.emit("remove", id);
   }
-  onDown(id, buttonId, timestamp) {
+  _onDown(id, buttonId, timestamp) {
     this.emit("down", id, buttonId, timestamp);
   }
-  onUp(id, buttonId, timestamp) {
+  _onUp(id, buttonId, timestamp) {
     this.emit("up", id, buttonId, timestamp);
   }
-  onMove(axis, value, lastValue, timestamp) {
-    this.emit("move",axis, value, lastValue, timestamp);
+  _onMove(axis, value, lastValue, timestamp) {
+    this.emit("move", axis, value, lastValue, timestamp);
     if (value > this.deadZone && lastValue < this.deadZone) {
       this.emit("axisDown", axis, 1, value, lastValue, timestamp);
     } else if (value < -this.deadZone && lastValue > -this.deadZone) {
@@ -38,4 +51,4 @@ class GamePadPlus extends EventEmitter {
       this.emit("axisUp", axis, 1, value, lastValue, timestamp);
   }
 }
-module.exports=GamePadPlus;
+module.exports = GamePadPlus;

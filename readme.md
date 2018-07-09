@@ -2,8 +2,8 @@
 
 ## Monitor axes as buttons on top of Gamepad library
 
-Original work from [https://www.npmjs.com/package/gamepad](https://www.npmjs.com/package/gamepad)
-All the origins events and methods remains unchanged
+Original work from [https://www.npmjs.com/package/gamepad](https://www.npmjs.com/package/gamepad)<br>
+All the origins events and methods remains unchanged<br>
 Usage:
 ```
 const GamePad = require("lepioo.gamepad");

@@ -7,7 +7,6 @@ All the origins events and methods remains unchanged<br>
 Usage:
 ```
 const GamePad = require("lepioo.gamepad");
-var gamepad=new GamePad();
 gamepad.init();
 gamepad.on("axisDown",(axis, direction, timestamp)=>console.log("axis":+axis+" direction:"+direction+" DOWN"));
 gamepad.on("axisUp",(axis, direction, timestamp)=>console.log("axis":+axis+" direction:"+direction+" UP"));

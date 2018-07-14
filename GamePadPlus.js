@@ -23,11 +23,11 @@ class GamePadPlus extends EventEmitter {
   deviceAtIndex(deviceIndex) {
     return(Gamepad.deviceAtIndex(deviceIndex));
   }
-  detectDevices() {
-    Gamepad.detectDevices();
+  get detectDevices() {
+    return(Gamepad.detectDevices);
   }
-  processEvents() {
-    Gamepad.processEvents();
+  get processEvents() {
+    return(Gamepad.processEvents);
   }
   _onAttach(id, state) {
     this.emit("attach", id, state);
@@ -51,4 +51,4 @@ class GamePadPlus extends EventEmitter {
       this.emit("axisUp", axis, 1, value, lastValue, timestamp);
   }
 }
-module.exports = GamePadPlus;
+module.exports = new GamePadPlus();

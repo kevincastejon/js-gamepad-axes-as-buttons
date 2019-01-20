@@ -47,8 +47,11 @@ class GamePadPlus extends EventEmitter {
       this.emit("axisDown", id, axis, 1, value, lastValue, timestamp);
     } else if (value < -this.deadZone && lastValue > -this.deadZone) {
       this.emit("axisDown", id, axis, 0, value, lastValue, timestamp);
-    } else if ((value > -this.deadZone && value < this.deadZone) && (lastValue < -this.deadZone || lastValue > this.deadZone))
+    } else if ((value > -this.deadZone && value < this.deadZone) && lastValue < -this.deadZone){
+      this.emit("axisUp", id, axis, 0, value, lastValue, timestamp);
+    } else if ((value > -this.deadZone && value < this.deadZone) && lastValue > this.deadZone){
       this.emit("axisUp", id, axis, 1, value, lastValue, timestamp);
+    }
   }
 }
 module.exports = new GamePadPlus();

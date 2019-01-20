@@ -1,6 +1,6 @@
 {
   "name": "lepioo.gamepad",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Monitor axes as buttons on top of Gamepad library",
   "main": "GamePadPlus.js",
   "dependencies": {

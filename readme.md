@@ -8,8 +8,8 @@ Usage:
 ```
 const GamePad = require("lepioo.gamepad");
 GamePad.init();
-setInterval(Gamepad.processEvents,16);
-setInterval(Gamepad.detectDevices,500);
+setInterval(GamePad.processEvents,16);
+setInterval(GamePad.detectDevices,500);
 GamePad.on("axisDown",(id, axis, direction, timestamp)=>console.log("padId:"+id+" axis:"+axis+" direction:"+direction+" DOWN"));
 GamePad.on("axisUp",(id, axis, direction, timestamp)=>console.log("padId:"+id+" axis:"+axis+" direction:"+direction+" UP"));
 ```

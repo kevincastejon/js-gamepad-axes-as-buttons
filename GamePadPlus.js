@@ -1,15 +1,14 @@
 const Gamepad = require("gamepad");
-const EventEmitter = require('events');
 
-class GamePadPlus extends EventEmitter {
+class GamePadPlus extends require('events') {
   constructor(deadZone = 0.2) {
     super();
     this.deadZone = deadZone;
   }
   init() {
     Gamepad.init();
-    Gamepad.on("attach", (id, state) => _onAttach(id, state));
-    Gamepad.on("remove", (id) => _onRemove(id));
+    Gamepad.on("attach", (id, state) => this._onAttach(id, state));
+    Gamepad.on("remove", (id) => this._onRemove(id));
     Gamepad.on("down", (id, buttonId, timestamp) => this._onDown(id, buttonId, timestamp));
     Gamepad.on("up", (id, buttonId, timestamp) => this._onUp(id, buttonId, timestamp));
     Gamepad.on("move", (id, axis, value, lastValue, timestamp) => this._onMove(id, axis, value, lastValue, timestamp));

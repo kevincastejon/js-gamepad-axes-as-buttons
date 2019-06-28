@@ -1,5 +1,5 @@
 {
-  "name": "lepioo.gamepad",
+  "name": "gamepad-axes-as-buttons",
   "version": "1.0.5",
   "description": "Monitor axes as buttons on top of Gamepad library",
   "main": "GamePadPlus.js",
@@ -15,6 +15,17 @@
     "axes",
     "buttons"
   ],
-  "author": "lepioo",
-  "license": "ISC"
+  "author": "kevincastejon",
+  "license": "ISC",
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevincastejon/js-gamepad-axes-as-buttons.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kevincastejon/js-gamepad-axes-as-buttons/issues"
+  },
+  "homepage": "https://github.com/kevincastejon/js-gamepad-axes-as-buttons#readme"
 }

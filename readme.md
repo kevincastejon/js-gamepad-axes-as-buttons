@@ -1,4 +1,4 @@
-# js-gamepad-axes-as-buttons
+# js-gamepad-axes-as-buttons 
 
 ## Monitor axes as buttons on top of Gamepad library
 
